@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wing & Harbor | Premium Wings & Sports Bar</title>
+  <meta name="description" content="Premium sports lounge and modern American wing restaurant. Big Games. Big Wings. Big Nights.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  
+  <!-- Page Specific CSS -->
+  <style>
+    /* Home Page Specific Styles */
+    
+    /* 01 - Hero */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding-top: var(--header-height);
+      overflow: hidden;
+      background: #000;
+    }
+    
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.5;
+      transform: scale(1.05);
+      animation: slowZoom 20s infinite alternate;
+    }
+    
+    @keyframes slowZoom {
+      0% { transform: scale(1.05); }
+      100% { transform: scale(1.15); }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .hero h1 {
+      color: #ffffff;
+    }
+    
+    .hero p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .hero-cta-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    
+    .hero .btn-outline {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .hero .btn-outline:hover {
+      border-color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Floating Elements */
+    .floating-el {
+      position: absolute;
+      background: var(--bg-secondary);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--hover-shadow);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      z-index: 2;
+      border: 1px solid var(--border-color);
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .float-1 { bottom: 15%; right: 10%; animation-delay: 0s; }
+    .float-2 { top: 25%; right: 5%; animation-delay: -2s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    /* 02 - Sauce Lineup */
+    .sauce-section { background: var(--bg-secondary); overflow: hidden; }
+    .sauce-carousel {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .sauce-card {
+      flex: 0 0 calc(25% - 1.5rem);
+      max-width: 320px;
+      min-width: 250px;
+      background: var(--bg-primary);
+      border-radius: var(--radius-lg);
+      padding: 0;
+      text-align: center;
+      position: relative;
+      transition: all var(--transition-normal);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .sauce-content {
+      padding: 1.5rem;
+    }
+    
+    .sauce-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent-primary);
+      box-shadow: var(--hover-shadow);
+    }
+    
+    .sauce-img-placeholder {
+      width: 100%; height: 220px;
+      margin: 0;
+      object-fit: cover;
+      border-radius: 0;
+      position: relative;
+      transition: transform var(--transition-bounce);
+    }
+    
+    .sauce-card:hover .sauce-img-placeholder { transform: scale(1.1) rotate(5deg); }
+    
+    .heat-indicator { display: flex; justify-content: center; gap: 5px; margin: 1rem 0; }
+    .heat-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-color); }
+    .heat-dot.active { background: var(--accent-primary); }
+    
+    /* 03 - Live Board */
+    .scoreboard-section { background: var(--bg-primary); }
+    .scoreboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .score-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .score-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--accent-primary);
+    }
+    
+    [dir="rtl"] .score-card::before { left: auto; right: 0; }
+    
+    .live-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--accent-secondary); color: #fff;
+      padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+    [dir="rtl"] .live-badge { right: auto; left: 1rem; }
+    
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+    
+    .matchup { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; }
+    .team { font-family: var(--font-heading); font-size: 1.5rem; }
+    .vs { color: var(--text-secondary); font-weight: bold; }
+    
+    /* 04 - Signature Wings */
+    .wings-showcase { background: var(--bg-secondary); }
+    .wings-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .wing-img-large {
+      border-radius: var(--radius-xl);
+      box-shadow: var(--card-shadow);
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+    .wing-img-large:hover { transform: scale(1.02); }
+    
+    .wing-features { display: flex; flex-direction: column; gap: 2rem; }
+    .wing-feature h3 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent-primary); }
+    
+    /* 05 - Game Night Experience */
+    .experience-section {
+      background: var(--bg-primary);
+      position: relative;
+      padding: 8rem 0;
+    }
+    .scroll-container {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      padding: 1rem 5%;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-primary) var(--bg-secondary);
+    }
+    .exp-card {
+      min-width: 400px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+    }
+    .exp-card img { width: 100%; height: 300px; object-fit: cover; transition: transform var(--transition-normal); }
+    .exp-card:hover img { transform: scale(1.1); }
+    .exp-overlay {
+      position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      color: #fff;
+    }
+    
+    /* 06 - Final CTA */
+    .final-cta {
+      padding: 10rem 5%;
+      text-align: center;
+      background: #0a0f1c;
+      color: #fff;
+      position: relative;
+      border-top: 1px solid var(--accent-primary);
+    }
+    .final-cta::before {
+      display: none;
+    }
+    .final-cta h2, .final-cta p { color: #fff !important; }
+    .final-cta-content { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; color: #fff; }
+    .final-cta h2 { font-size: 4rem; }
+    
+    @media (max-width: 1024px) {
+      .hero {
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+      .hero-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .floating-cards-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+      }
+      .floating-el {
+        position: relative;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        animation: none !important;
+        transform: none !important;
+        flex: 1;
+        min-width: 180px;
+        max-width: 280px;
+        margin: 0;
+      }
+      .wings-grid { grid-template-columns: 1fr; }
+      .hero-cta-group { flex-direction: column; }
+      .scoreboard-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .scoreboard-grid .score-card {
+        flex: 0 0 calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+      }
+    }
+    @media (max-width: 768px) {
+      .scoreboard-grid .score-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+      .exp-card { min-width: 280px; }
+      .final-cta h2 { font-size: 3rem; }
+    }
+  </style>
+<link rel="icon" type="image/png" href="assets/images/website-logo.png">
+</head>
+<body>
+
+  <!-- Overlay for mobile menu -->
+  <div class="overlay"></div>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link text-accent">Home</a>
+      <a href="home-2.html" class="mobile-nav-link">Home 2</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="services.html" class="mobile-nav-link">Services</a>
+      <a href="menu.html" class="mobile-nav-link">Menu</a>
+      <a href="events.html" class="mobile-nav-link">Events</a>
+      <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+      <a href="locations.html" class="mobile-nav-link">Locations</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+    <div class="mobile-actions">
+      <div class="mobile-controls">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+          <svg class="theme-toggle-icon" width="24" height="24" fill="none" viewBox="0 0 24 24"></svg>
+        </button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+          <svg class="rtl-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg>
+        </button>
+      </div>
+      <button class="btn btn-primary w-100" data-popup="reservation-popup">Reserve Table</button>
+    </div>
+  </nav>
+
+  <!-- Global Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.svg" alt="Wing & Harbor Logo" />
+        
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="home-2.html" class="nav-link">Home 2</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="menu.html" class="nav-link">Menu</a></li>
+        <li><a href="events.html" class="nav-link">Events</a></li>
+        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="locations.html" class="nav-link">Locations</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+          <svg class="theme-toggle-icon" width="24" height="24" fill="none" viewBox="0 0 24 24"></svg>
+        </button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+          <svg class="rtl-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg>
+        </button>
+        <button class="btn btn-primary" data-popup="reservation-popup">Reserve Table</button>
+        <button class="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 01 - HERO SECTION -->
+    <section class="hero">
+      <img src="assets/images/home1-hero.png" alt="Premium wing restaurant interior" class="hero-bg">
+      <div class="container hero-content">
+        <span class="hero-subtitle text-accent">Game Night Starts Here</span>
+        <h1>WINGS. SPORTS.<br>NO BORING NIGHTS.</h1>
+        <p>Crispy wings, signature sauces, cold drinks and every big game under one roof. The ultimate premium sports lounge experience.</p>
+        <div class="hero-cta-group">
+          <button class="btn btn-primary" data-popup="reservation-popup">Reserve a Table <span class="icon-right">→</span></button>
+          <a href="menu.html" class="btn btn-outline">Explore the Menu <span class="icon-right">→</span></a>
+        </div>
+      </div>
+      
+
+    </section>
+
+    <!-- 02 - SIGNATURE SAUCE LINEUP -->
+    <section class="section-padding sauce-section">
+      <div class="container text-center" style="margin-bottom: 3rem;">
+        <h2>Pick Your Heat.</h2>
+        <p>From mild & savory to absolutely extreme. Find your perfect flavor.</p>
+      </div>
+      
+      <div class="sauce-carousel">
+        <div class="sauce-card">
+          <img src="assets/images/Garlic Parmesan.png" class="sauce-img-placeholder" alt="Garlic Parmesan">
+          <div class="sauce-content">
+            <h3>Garlic Parmesan</h3>
+            <div class="heat-indicator">
+              <div class="heat-dot active"></div>
+              <div class="heat-dot"></div>
+              <div class="heat-dot"></div>
+              <div class="heat-dot"></div>
+              <div class="heat-dot"></div>
+            </div>
+            <p class="text-secondary" style="font-size: 0.9rem;">Rich, buttery, and packed with roasted garlic.</p>
+          </div>
+        </div>
+        
+        <div class="sauce-card">
+          <img src="assets/images/Smoked BBQ.png" class="sauce-img-placeholder" alt="Smoked BBQ">
+          <div class="sauce-content">
+            <h3>Smoked BBQ</h3>
+            <div class="heat-indicator">
+              <div class="heat-dot active"></div>
+              <div class="heat-dot active"></div>
+              <div class="heat-dot"></div>
+              <div class="heat-dot"></div>
+              <div class="heat-dot"></div>
+            </div>
+            <p class="text-secondary" style="font-size: 0.9rem;">Deep hickory smoke with a sweet molasses finish.</p>
+          </div>
+        </div>
+        
+        <div class="sauce-card">
+          <img src="assets/images/Classic Buffalo.png" class="sauce-img-placeholder" alt="Classic Buffalo">
+          <div class="sauce-content">
+            <h3>Classic Buffalo</h3>
+            <div class="heat-indicator">
+              <div class="heat-dot active"></div>
+              <div class="heat-dot active"></div>
+              <div class="heat-dot active"></div>
+              <div class="heat-dot"></div>
+              <div class="heat-dot"></div>
+            </div>
+            <p class="text-secondary" style="font-size: 0.9rem;">The authentic game-day standard.</p>
+          </div>
+        </div>
+        
+        <div class="sauce-card">
+          <img src="assets/images/Honey Heat.png" class="sauce-img-placeholder" alt="Honey Heat">
+          <div class="sauce-content">
+            <h3>Honey Heat</h3>
+            <div class="heat-indicator">
+              <div class="heat-dot active"></div>
+              <div class="heat-dot active"></div>
+              <div class="heat-dot active"></div>
+              <div class="heat-dot"></div>
+              <div class="heat-dot"></div>
+            </div>
+            <p class="text-secondary" style="font-size: 0.9rem;">Sweet local honey mixed with fiery habanero.</p>
+          </div>
+        </div>
+        
+        <div class="sauce-card">
+          <img src="assets/images/Nashville Fire.png" class="sauce-img-placeholder" alt="Nashville Fire">
+          <div class="sauce-content">
+            <h3>Nashville Fire</h3>
+            <div class="heat-indicator">
+              <div class="heat-dot active"></div>
+              <div class="heat-dot active"></div>
+              <div class="heat-dot active"></div>
+              <div class="heat-dot active"></div>
+              <div class="heat-dot active"></div>
+            </div>
+            <p class="text-secondary" style="font-size: 0.9rem;">Intense cayenne spice. Not for the faint of heart.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 - GAME-DAY LIVE BOARD -->
+    <section class="section-padding scoreboard-section">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2>Tonight's Games</h2>
+            <p>Catch every play on our 150" LED screens.</p>
+          </div>
+          <a href="events.html" class="btn btn-outline">See All Game Nights <span class="icon-right">→</span></a>
+        </div>
+        
+        <div class="scoreboard-grid">
+          <div class="score-card">
+            <div class="live-badge">LIVE 4Q</div>
+            <div style="color: var(--text-secondary); font-size: 0.9rem;">BASKETBALL • MAIN SCREEN</div>
+            <div class="matchup">
+              <div class="team">EAGLES</div>
+              <div class="vs">102 - 98</div>
+              <div class="team">WOLVES</div>
+            </div>
+          </div>
+          
+          <div class="score-card">
+            <div style="color: var(--accent-primary); font-weight: bold; margin-bottom: 0.5rem;">7:30 PM</div>
+            <div style="color: var(--text-secondary); font-size: 0.9rem;">FOOTBALL • SCREEN 2 & 3</div>
+            <div class="matchup">
+              <div class="team">PANTHERS</div>
+              <div class="vs">VS</div>
+              <div class="team">STALLIONS</div>
+            </div>
+          </div>
+          
+          <div class="score-card">
+            <div style="color: var(--accent-primary); font-weight: bold; margin-bottom: 0.5rem;">9:00 PM</div>
+            <div style="color: var(--text-secondary); font-size: 0.9rem;">HOCKEY • LOUNGE AREA</div>
+            <div class="matchup">
+              <div class="team">BEARS</div>
+              <div class="vs">VS</div>
+              <div class="team">KNIGHTS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 - SIGNATURE WINGS -->
+    <section class="section-padding wings-showcase">
+      <div class="container wings-grid">
+        <img src="assets/images/Classic Bone-In Wings.png" alt="Crispy original wings" class="wing-img-large">
+        
+        <div class="wing-features">
+          <div>
+            <h2>Crispy Outside.<br>Serious Flavor Inside.</h2>
+            <p>Our wings are never frozen, always fresh, and cooked to absolute perfection. Hand-tossed in your choice of our 12 signature house-made sauces.</p>
+          </div>
+          
+          <div class="wing-feature">
+            <h3>01. Original Wings</h3>
+            <p class="text-secondary">Classic bone-in wings, double fried for maximum crunch.</p>
+          </div>
+          <div class="wing-feature">
+            <h3>02. Firecracker Boneless</h3>
+            <p class="text-secondary">Premium breast meat bites, tossed in sweet chili heat.</p>
+          </div>
+          <div class="wing-feature">
+            <h3>03. The Wing Box</h3>
+            <p class="text-secondary">24 wings, 3 sauces, large fries, and dips. Perfect for the table.</p>
+          </div>
+          
+          <div style="margin-top: 1rem;">
+            <a href="menu.html" class="btn btn-primary">View Full Menu <span class="icon-right">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 - GAME-NIGHT EXPERIENCE -->
+    <section class="experience-section">
+      <div class="container text-center" style="margin-bottom: 3rem;">
+        <h2>Your Seat for Every Big Moment.</h2>
+        <p>Immersive sound, massive screens, and the best game-day atmosphere in the city.</p>
+      </div>
+      
+      <div class="scroll-container">
+        <div class="exp-card">
+          <img src="assets/images/The Main Arena.png" alt="The Main Arena">
+          <div class="exp-overlay">
+            <h3>The Main Arena</h3>
+            <p>150" screens and stadium surround sound.</p>
+          </div>
+        </div>
+        <div class="exp-card">
+          <img src="assets/images/Group Booths.png" alt="Group Booths">
+          <div class="exp-overlay">
+            <h3>Group Booths</h3>
+            <p>Private screens and massive tables for the crew.</p>
+          </div>
+        </div>
+        <div class="exp-card">
+          <img src="assets/images/The Long Bar.png" alt="The Long Bar">
+          <div class="exp-overlay">
+            <h3>The Long Bar</h3>
+            <p>24 taps and the best view in the house.</p>
+          </div>
+        </div>
+        <div class="exp-card">
+          <img src="assets/images/Late Night Vibes.png" alt="Late Night Vibes">
+          <div class="exp-overlay">
+            <h3>Late Night Vibes</h3>
+            <p>When the game ends, the night begins.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container text-center" style="margin-top: 4rem;">
+        <a href="events.html" class="btn btn-outline">Plan Your Game Night <span class="icon-right">→</span></a>
+      </div>
+    </section>
+
+    <!-- 06 - FINAL CTA -->
+    <section class="final-cta">
+      <div class="final-cta-content">
+        <h2>Bring Your Crew.<br>We'll Bring the Wings.</h2>
+        <p style="font-size: 1.25rem; margin-bottom: 2rem;">Secure your spot for the next big match. Tables fill up fast on game nights.</p>
+        <button class="btn btn-primary" data-popup="reservation-popup">Reserve Your Table <span class="icon-right">→</span></button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Reservation Popup -->
+  <div class="popup-wrapper" id="reservation-popup">
+    <div class="popup-overlay"></div>
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Close">✖</button>
+      <h2 style="color: var(--accent-primary);">RESERVE YOUR GAME NIGHT</h2>
+      <p style="margin-bottom: 2rem;">Book your table for the best view of the game.</p>
+      
+      <form id="res-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control" placeholder="(555) 000-0000" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Time</label>
+            <input type="time" class="form-control" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Guests</label>
+            <select class="form-control">
+              <option>1-2 People</option>
+              <option>3-4 People</option>
+              <option>5-6 People</option>
+              <option>7-10 People (Crew Pack)</option>
+              <option>10+ (Contact Us)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location</label>
+            <select class="form-control">
+              <option>Downtown Arena</option>
+              <option>Riverside Lounge</option>
+              <option>Midtown</option>
+            </select>
+          </div>
+        </div>
+        
+        <button type="button" class="btn btn-primary w-100" style="width: 100%; margin-top: 1rem;" onclick="alert('Reservation requested! (Frontend Demo)')">Check Availability <span class="icon-right">→</span></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="logo.svg" alt="Wing & Harbor Logo" />
+        </div>
+        <p>Premium sports lounge and modern American wing restaurant. Big Games. Big Wings. Big Nights.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="X">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="footer-title">Explore</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="home-2.html">Home 2</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Services</a>
+          <a href="menu.html">Menu</a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="footer-title">Game Night</h4>
+        <div class="footer-links">
+          <a href="events.html">Events & Schedule</a>
+          <a href="pricing.html">Pricing & Packages</a>
+          <a href="locations.html">Locations</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="footer-title">Get Game-Day Updates</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Sign up for exclusive wing deals and event announcements.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email" aria-label="Email address">
+          <button type="button">Subscribe <span class="icon-right">→</span></button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Wing & Harbor. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+

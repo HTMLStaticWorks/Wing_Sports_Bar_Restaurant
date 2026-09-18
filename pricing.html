@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wing & Harbor | Pricing</title>
+  <meta name="description" content="Choose Your Game-Day Experience.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  
+  <style>
+    /* Pricing Page Specific Styles */
+    
+    /* 01 - Hero */
+    .pricing-hero {
+      height: 80vh; min-height: 600px;
+      position: relative; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding-top: var(--header-height);
+      background: linear-gradient(135deg, #ff5e00, #ffb703); border-bottom: 1px solid var(--border-color);
+    }
+    .pricing-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 5%; }
+    .pricing-hero h1 { color: var(--text-primary); margin-bottom: 1rem; }
+    
+    /* 02 - Game Night Packages (Advanced Comparison) */
+    .packages-section { background: var(--bg-secondary); }
+    .packages-container {
+      max-width: 1000px; margin: 0 auto;
+      border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+      overflow-x: auto; overflow-y: hidden; box-shadow: var(--card-shadow); background: var(--bg-primary);
+    }
+    
+    .package-row {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border-color); transition: background var(--transition-fast);
+      min-width: 800px;
+    }
+    .package-row:last-child { border-bottom: none; }
+    .package-row:hover { background: var(--bg-tertiary); }
+    
+    .package-cell { padding: 1.5rem; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .package-cell.header-cell {
+      background: var(--bg-tertiary); font-family: var(--font-heading);
+      font-size: 1.25rem; flex-direction: column; gap: 0.5rem;
+    }
+    .package-cell.feature-name {
+      justify-content: flex-start; text-align: left; font-weight: 600;
+      color: var(--text-primary); border-right: 1px solid var(--border-color);
+    }
+    [dir="rtl"] .package-cell.feature-name { text-align: right; border-right: none; border-left: 1px solid var(--border-color); }
+    
+    .package-price { font-size: 2rem; color: var(--accent-primary); }
+    
+    /* 03 - Wing Deals */
+    .deals-section { background: var(--bg-primary); }
+    .deal-selector-container {
+      display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: stretch;
+    }
+    
+    .deal-options { display: flex; flex-direction: column; gap: 1rem; }
+    .deal-btn {
+      padding: 1.5rem; background: var(--bg-secondary); border: 2px solid var(--border-color);
+      border-radius: var(--radius-md); cursor: pointer; text-align: left;
+      transition: all var(--transition-fast); display: flex; justify-content: space-between; align-items: center;
+    }
+    [dir="rtl"] .deal-btn { text-align: right; }
+    .deal-btn:hover { border-color: var(--text-secondary); }
+    .deal-btn.active {
+      background: rgba(255, 94, 0, 0.1); border-color: var(--accent-primary);
+    }
+    .deal-btn-title { font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary); }
+    .deal-btn-price { font-weight: bold; font-size: 1.25rem; color: var(--accent-primary); }
+    
+    .deal-customizer {
+      background: var(--bg-secondary); padding: 3rem; border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color); display: flex; flex-direction: column;
+    }
+    .customizer-step { margin-bottom: 2rem; }
+    .customizer-step:last-child { margin-bottom: 0; }
+    .customizer-step h4 { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1rem; }
+    
+    /* 04 - Pricing CTA */
+    .pricing-cta {
+      padding: 8rem 5%; text-align: center;
+      background: #0a0f1c;
+      position: relative; color: #fff; border-top: 1px solid var(--accent-primary);
+    }
+    .pricing-cta::before { display: none; }
+    .pricing-cta h2, .pricing-cta p { color: #fff !important; }
+    .pricing-cta-content { position: relative; z-index: 2; }
+    
+    @media (max-width: 1024px) {
+      .deal-selector-container { grid-template-columns: 1fr; }
+    }
+  </style>
+<link rel="icon" type="image/png" href="assets/images/website-logo.png">
+</head>
+<body>
+
+  <!-- Overlay for mobile menu -->
+  <div class="overlay"></div>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="home-2.html" class="mobile-nav-link">Home 2</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="services.html" class="mobile-nav-link">Services</a>
+      <a href="menu.html" class="mobile-nav-link">Menu</a>
+      <a href="events.html" class="mobile-nav-link">Events</a>
+      <a href="pricing.html" class="mobile-nav-link text-accent">Pricing</a>
+      <a href="locations.html" class="mobile-nav-link">Locations</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+    <div class="mobile-actions">
+      <div class="mobile-controls">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme"><svg class="theme-toggle-icon" width="24" height="24" fill="none" viewBox="0 0 24 24"></svg></button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL"><svg class="rtl-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg></button>
+      </div>
+      <button class="btn btn-primary w-100" data-popup="reservation-popup">Reserve Table</button>
+    </div>
+  </nav>
+
+  <!-- Global Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo"><img src="logo.svg" alt="Wing & Harbor Logo" /></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="home-2.html" class="nav-link">Home 2</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="menu.html" class="nav-link">Menu</a></li>
+        <li><a href="events.html" class="nav-link">Events</a></li>
+        <li><a href="pricing.html" class="nav-link active">Pricing</a></li>
+        <li><a href="locations.html" class="nav-link">Locations</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme"><svg class="theme-toggle-icon" width="24" height="24" fill="none" viewBox="0 0 24 24"></svg></button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL"><svg class="rtl-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg></button>
+        <button class="btn btn-primary" data-popup="reservation-popup">Reserve Table</button>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 01 - HERO -->
+    <section class="pricing-hero">
+      <div class="pricing-hero-content">
+        <h1>CHOOSE YOUR GAME-DAY EXPERIENCE.</h1>
+      </div>
+    </section>
+
+    <!-- 02 - GAME NIGHT PACKAGES -->
+    <section class="section-padding packages-section">
+      <div class="container text-center" style="margin-bottom: 4rem;">
+        <h2>Game Night Packages</h2>
+        <p>Reserved seating and premium food/drink bundles for major events.</p>
+      </div>
+      
+      <div class="container">
+        <div class="packages-container">
+          <div class="package-row">
+            <div class="package-cell header-cell" style="background: transparent; border-right: 1px solid var(--border-color);"></div>
+            <div class="package-cell header-cell">
+              <span style="color: var(--text-primary);">FAN PACK</span>
+              <span class="package-price">$45 <span style="font-size: 1rem; color: var(--text-secondary);">/ person</span></span>
+            </div>
+            <div class="package-cell header-cell">
+              <span style="color: var(--accent-primary);">CREW PACK</span>
+              <span class="package-price">$65 <span style="font-size: 1rem; color: var(--text-secondary);">/ person</span></span>
+            </div>
+            <div class="package-cell header-cell">
+              <span style="color: var(--text-primary);">CHAMPIONSHIP</span>
+              <span class="package-price">$95 <span style="font-size: 1rem; color: var(--text-secondary);">/ person</span></span>
+            </div>
+          </div>
+          
+          <div class="package-row">
+            <div class="package-cell feature-name">Reserved Seating</div>
+            <div class="package-cell">Standard View</div>
+            <div class="package-cell">Premium Booth</div>
+            <div class="package-cell">VIP Section (Front Row)</div>
+          </div>
+          <div class="package-row">
+            <div class="package-cell feature-name">Included Wings</div>
+            <div class="package-cell">10 Wings</div>
+            <div class="package-cell">20 Wings</div>
+            <div class="package-cell">Unlimited Wings (2 hrs)</div>
+          </div>
+          <div class="package-row">
+            <div class="package-cell feature-name">Drinks Included</div>
+            <div class="package-cell">2 Draft Beers</div>
+            <div class="package-cell">1 Pitcher (per 2)</div>
+            <div class="package-cell">Open Bar (Select Drafts)</div>
+          </div>
+          <div class="package-row">
+            <div class="package-cell feature-name">Appetizers</div>
+            <div class="package-cell">Shared Fries</div>
+            <div class="package-cell">Nachos & Fries</div>
+            <div class="package-cell">Full Starter Sampler</div>
+          </div>
+          <div class="package-row">
+            <div class="package-cell feature-name">Action</div>
+            <div class="package-cell"><button class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 1rem;" data-popup="reservation-popup">Select</button></div>
+            <div class="package-cell"><button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 1rem;" data-popup="reservation-popup">Select</button></div>
+            <div class="package-cell"><button class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 1rem;" data-popup="reservation-popup">Select</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 - WING DEALS -->
+    <section class="section-padding deals-section">
+      <div class="container text-center" style="margin-bottom: 4rem;">
+        <h2>Interactive Wing Deals</h2>
+        <p>Build your perfect box for takeout or delivery.</p>
+      </div>
+      
+      <div class="container deal-selector-container">
+        <div class="deal-options">
+          <button class="deal-btn active" data-deal="6">
+            <div>
+              <div class="deal-btn-title">6 Wings Snack</div>
+              <div style="font-size: 0.9rem; color: var(--text-secondary);">1 Sauce, 1 Dip</div>
+            </div>
+            <div class="deal-btn-price">$9.99</div>
+          </button>
+          <button class="deal-btn" data-deal="10">
+            <div>
+              <div class="deal-btn-title">10 Wings Meal</div>
+              <div style="font-size: 0.9rem; color: var(--text-secondary);">2 Sauces, 1 Dip, Side</div>
+            </div>
+            <div class="deal-btn-price">$16.99</div>
+          </button>
+          <button class="deal-btn" data-deal="20">
+            <div>
+              <div class="deal-btn-title">20 Wings Share</div>
+              <div style="font-size: 0.9rem; color: var(--text-secondary);">3 Sauces, 2 Dips, 2 Sides</div>
+            </div>
+            <div class="deal-btn-price">$29.99</div>
+          </button>
+          <button class="deal-btn" data-deal="family">
+            <div>
+              <div class="deal-btn-title">Family Box (40pc)</div>
+              <div style="font-size: 0.9rem; color: var(--text-secondary);">4 Sauces, Large Dips, Large Sides</div>
+            </div>
+            <div class="deal-btn-price">$54.99</div>
+          </button>
+          <button class="deal-btn" data-deal="game">
+            <div>
+              <div class="deal-btn-title">Game Night Box (100pc)</div>
+              <div style="font-size: 0.9rem; color: var(--text-secondary);">All Sauces, Party Dips, All Sides</div>
+            </div>
+            <div class="deal-btn-price">$120.00</div>
+          </button>
+        </div>
+        
+        <div class="deal-customizer">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+            <h3 id="customizer-title" style="margin: 0; color: var(--accent-primary);">6 Wings Snack</h3>
+            <span id="customizer-price" style="font-size: 1.5rem; font-weight: bold; font-family: var(--font-heading);">$9.99</span>
+          </div>
+          
+          <div class="customizer-step">
+            <h4>Select Wing Style</h4>
+            <select class="form-control" style="background: var(--bg-primary);">
+              <option>Classic Bone-in</option>
+              <option>Firecracker Boneless</option>
+            </select>
+          </div>
+          
+          <div class="customizer-step">
+            <h4>Select Primary Sauce</h4>
+            <select class="form-control" style="background: var(--bg-primary);">
+              <option>Classic Buffalo</option>
+              <option>Garlic Parmesan</option>
+              <option>Honey Heat</option>
+              <option>Nashville Fire</option>
+              <option>Smoked BBQ</option>
+            </select>
+          </div>
+          
+          <div class="customizer-step">
+            <h4>Select Dip</h4>
+            <select class="form-control" style="background: var(--bg-primary);">
+              <option>House Ranch</option>
+              <option>Bleu Cheese</option>
+            </select>
+          </div>
+          
+          <div style="margin-top: auto; padding-top: 2rem;">
+            <button class="btn btn-primary w-100" style="width: 100%;" onclick="alert('Added to cart! (Demo)')">Add to Order <span class="icon-right">→</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 - PRICING CTA -->
+    <section class="pricing-cta">
+      <div class="pricing-cta-content container">
+        <h2 style="font-size: clamp(3rem, 6vw, 4rem);">BRING THE CREW.<br>PICK YOUR PACKAGE.</h2>
+        <p style="font-size: 1.25rem; margin: 2rem 0; max-width: 600px; margin-left: auto; margin-right: auto;">Don't leave game night to chance. Secure your spot with our premium packages.</p>
+        <button class="btn btn-primary" data-popup="reservation-popup">Reserve Your Game Night <span class="icon-right">→</span></button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Reservation Popup (Same as index.html) -->
+  <div class="popup-wrapper" id="reservation-popup">
+    <div class="popup-overlay"></div>
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Close">✖</button>
+      <h2 style="color: var(--accent-primary);">RESERVE YOUR GAME NIGHT</h2>
+      <p style="margin-bottom: 2rem;">Book your table for the best view of the game.</p>
+      
+      <form id="res-form">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Name</label><input type="text" class="form-control" placeholder="John Doe" required></div>
+          <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-control" placeholder="(555) 000-0000" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Date</label><input type="date" class="form-control" required></div>
+          <div class="form-group"><label class="form-label">Package</label>
+            <select class="form-control">
+              <option>Standard Reservation</option>
+              <option>Fan Pack</option>
+              <option>Crew Pack</option>
+              <option>Championship Pack</option>
+            </select>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary w-100" style="width: 100%; margin-top: 1rem;" onclick="alert('Reservation requested! (Frontend Demo)')">Check Availability <span class="icon-right">→</span></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <!-- Same as index.html -->
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo"><img src="logo.svg" alt="Wing & Harbor Logo" /></div>
+        <p>Premium sports lounge and modern American wing restaurant. Big Games. Big Wings. Big Nights.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="Instagram"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg></a>
+          <a href="#" class="social-link" aria-label="X"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Explore</h4>
+        <div class="footer-links"><a href="index.html">Home</a><a href="home-2.html">Home 2</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="menu.html">Menu</a></div>
+      </div>
+      <div>
+        <h4 class="footer-title">Game Night</h4>
+        <div class="footer-links"><a href="events.html">Events & Schedule</a><a href="pricing.html">Pricing & Packages</a><a href="locations.html">Locations</a><a href="contact.html">Contact</a></div>
+      </div>
+      <div>
+        <h4 class="footer-title">Get Game-Day Updates</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Sign up for exclusive wing deals and event announcements.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email" aria-label="Email address"><button type="button">Subscribe <span class="icon-right">→</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom"><p>&copy; 2026 Wing & Harbor. All rights reserved.</p></div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Deal Selector JS
+    document.addEventListener('DOMContentLoaded', () => {
+      const dealBtns = document.querySelectorAll('.deal-btn');
+      const customizerTitle = document.getElementById('customizer-title');
+      const customizerPrice = document.getElementById('customizer-price');
+      
+      const dealData = {
+        '6': { title: '6 Wings Snack', price: '$9.99' },
+        '10': { title: '10 Wings Meal', price: '$16.99' },
+        '20': { title: '20 Wings Share', price: '$29.99' },
+        'family': { title: 'Family Box (40pc)', price: '$54.99' },
+        'game': { title: 'Game Night Box (100pc)', price: '$120.00' }
+      };
+      
+      dealBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          dealBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          const type = btn.getAttribute('data-deal');
+          customizerTitle.textContent = dealData[type].title;
+          customizerPrice.textContent = dealData[type].price;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+

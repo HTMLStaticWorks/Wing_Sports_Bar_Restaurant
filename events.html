@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wing & Harbor | Events & Game Nights</title>
+  <meta name="description" content="Every Game Deserves a Night Out.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  
+  <style>
+    /* Events Page Specific Styles */
+    
+    /* 01 - Hero */
+    .events-hero { text-align: center; 
+      height: 80vh; min-height: 600px;
+      position: relative; display: flex; align-items: center; justify-content: center;
+      padding-top: var(--header-height);
+      background: linear-gradient(135deg, #ff5e00, #ffb703);
+    }
+    
+    .events-hero-content { position: relative; z-index: 2; max-width: 600px; padding: 0 5%; }
+    .events-hero h1 { color: var(--text-primary); margin-bottom: 1rem; }
+    
+    /* 02 - Event Calendar */
+    .event-calendar-section { background: var(--bg-primary); }
+    .event-filters {
+      display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; justify-content: center;
+    }
+    .event-filter-btn {
+      padding: 0.75rem 1.5rem; background: var(--bg-secondary); border: 1px solid var(--border-color);
+      color: var(--text-primary); border-radius: 50px; cursor: pointer; transition: all var(--transition-fast);
+    }
+    .event-filter-btn.active, .event-filter-btn:hover {
+      background: var(--text-primary); color: var(--bg-primary);
+    }
+    
+    .event-grid {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
+    }
+    
+    .event-card {
+      background: var(--bg-secondary); border-radius: var(--radius-lg); overflow: hidden;
+      border: 1px solid var(--border-color); display: flex; flex-direction: column;
+      width: 100%; max-width: 450px;
+    }
+    @media (min-width: 768px) {
+      .event-card { width: calc(50% - 1rem); max-width: none; }
+    }
+    @media (min-width: 1024px) {
+      .event-card { width: calc(33.333% - 1.34rem); max-width: none; }
+    }
+    .event-img { position: relative; height: 200px; }
+    .event-img img { width: 100%; height: 100%; object-fit: cover; }
+    .event-date-badge {
+      position: absolute; top: 1rem; left: 1rem; background: var(--accent-primary); color: #fff;
+      padding: 0.5rem; border-radius: var(--radius-sm); text-align: center; font-weight: bold;
+      min-width: 60px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    [dir="rtl"] .event-date-badge { left: auto; right: 1rem; }
+    .event-info { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .event-type-pill {
+      background: rgba(255, 255, 255, 0.1); padding: 0.25rem 0.75rem; border-radius: 20px;
+      font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: var(--text-secondary);
+    }
+    
+    /* 03 - Game-Night Experience */
+    .game-night-section { background: var(--bg-secondary); overflow: hidden; }
+    .experience-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: var(--radius-xl); overflow: hidden;
+      box-shadow: var(--card-shadow); border: 1px solid var(--border-color);
+    }
+    .exp-content-box { padding: 4rem; background: var(--bg-primary); display: flex; flex-direction: column; justify-content: center; }
+    .exp-img-box { position: relative; height: 100%; min-height: 400px; }
+    .exp-img-box img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    
+    /* 04 - Event Booking CTA */
+    .event-cta-section { padding: 8rem 5%; text-align: center; background: #0a0f1c; color: #fff; border-top: 1px solid var(--accent-primary); }
+    .event-cta-section h2, .event-cta-section p { color: #fff !important; }
+    
+    @media (max-width: 1024px) {
+      .experience-grid { grid-template-columns: 1fr; }
+      .exp-img-box { min-height: 300px; }
+      .exp-content-box { padding: 2rem; }
+    }
+  </style>
+<link rel="icon" type="image/png" href="assets/images/website-logo.png">
+</head>
+<body>
+
+  <!-- Overlay for mobile menu -->
+  <div class="overlay"></div>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="home-2.html" class="mobile-nav-link">Home 2</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="services.html" class="mobile-nav-link">Services</a>
+      <a href="menu.html" class="mobile-nav-link">Menu</a>
+      <a href="events.html" class="mobile-nav-link text-accent">Events</a>
+      <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+      <a href="locations.html" class="mobile-nav-link">Locations</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+    <div class="mobile-actions">
+      <div class="mobile-controls">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme"><svg class="theme-toggle-icon" width="24" height="24" fill="none" viewBox="0 0 24 24"></svg></button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL"><svg class="rtl-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg></button>
+      </div>
+      <button class="btn btn-primary w-100" data-popup="booking-popup">Book Game Night</button>
+    </div>
+  </nav>
+
+  <!-- Global Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo"><img src="logo.svg" alt="Wing & Harbor Logo" /></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="home-2.html" class="nav-link">Home 2</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="menu.html" class="nav-link">Menu</a></li>
+        <li><a href="events.html" class="nav-link active">Events</a></li>
+        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="locations.html" class="nav-link">Locations</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme"><svg class="theme-toggle-icon" width="24" height="24" fill="none" viewBox="0 0 24 24"></svg></button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL"><svg class="rtl-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg></button>
+        <button class="btn btn-primary" data-popup="booking-popup">Book Game Night</button>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 01 - HERO -->
+    <section class="events-hero">
+      <div class="events-hero-content">
+        <h1>EVERY GAME DESERVES A NIGHT OUT.</h1>
+      </div>
+    </section>
+
+    <!-- 02 - EVENT CALENDAR -->
+    <section class="section-padding event-calendar-section">
+      <div class="container text-center" style="margin-bottom: 2rem;">
+        <h2>Upcoming Events</h2>
+      </div>
+      
+      <div class="container">
+        <div class="event-filters">
+          <button class="event-filter-btn active" data-type="all">All Events</button>
+          <button class="event-filter-btn" data-type="football">Football</button>
+          <button class="event-filter-btn" data-type="basketball">Basketball</button>
+          <button class="event-filter-btn" data-type="championship">Championships</button>
+          <button class="event-filter-btn" data-type="trivia">Trivia Night</button>
+          <button class="event-filter-btn" data-type="challenge">Wing Challenges</button>
+          <button class="event-filter-btn" data-type="fan">Fan Nights</button>
+        </div>
+        
+        <div class="event-grid" id="event-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 - GAME-NIGHT EXPERIENCE -->
+    <section class="section-padding game-night-section">
+      <div class="container text-center" style="margin-bottom: 4rem;">
+        <h2>The Experience</h2>
+      </div>
+      
+      <div class="container">
+        <div class="experience-grid">
+          <div class="exp-content-box">
+            <h3 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent-primary);">Stadium Atmosphere.</h3>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Why watch at home when you can be part of the roar? We've engineered our acoustics and AV setup to replicate the energy of the stadium.</p>
+            <ul style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem;">
+              <li style="display: flex; gap: 0.5rem; align-items: center;"><span class="text-accent">✔</span> 150" Main LED screens</li>
+              <li style="display: flex; gap: 0.5rem; align-items: center;"><span class="text-accent">✔</span> Directional game audio</li>
+              <li style="display: flex; gap: 0.5rem; align-items: center;"><span class="text-accent">✔</span> Dedicated fan sections</li>
+            </ul>
+          </div>
+          <div class="exp-img-box">
+            <img src="assets/images/Stadium Atmosphere.png" alt="Stadium Atmosphere">
+          </div>
+          
+          <div class="exp-img-box">
+            <img src="assets/images/Game-Day Packages.png" alt="Game-Day Packages">
+          </div>
+          <div class="exp-content-box">
+            <h3 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent-primary);">Game-Day Packages.</h3>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem;">We handle the food and drinks, you handle the cheering. Our reserved seating packages guarantee prime views and massive wing platters.</p>
+            <ul style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem;">
+              <li style="display: flex; gap: 0.5rem; align-items: center;"><span class="text-accent">✔</span> Reserved priority seating</li>
+              <li style="display: flex; gap: 0.5rem; align-items: center;"><span class="text-accent">✔</span> Event-specific food specials</li>
+              <li style="display: flex; gap: 0.5rem; align-items: center;"><span class="text-accent">✔</span> VIP group tables</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 - EVENT BOOKING CTA -->
+    <section class="event-cta-section">
+      <div class="container" style="max-width: 600px; margin: 0 auto;">
+        <h2>Make Your Next Game a Big One.</h2>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">Seats for major events fill up weeks in advance. Don't get stuck standing at a dive bar.</p>
+        <button class="btn btn-primary" data-popup="booking-popup">Book Game Night <span class="icon-right">→</span></button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Booking Popup -->
+  <div class="popup-wrapper" id="booking-popup">
+    <div class="popup-overlay"></div>
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Close">✖</button>
+      <h2 style="color: var(--accent-primary);">BOOK GAME NIGHT</h2>
+      <p style="margin-bottom: 2rem;">Request your table for an upcoming event.</p>
+      
+      <form id="res-form">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Event</label>
+            <select class="form-control">
+              <option>Sunday Football Watch Party</option>
+              <option>Rivalry Night: Courtside</option>
+              <option>Sports Trivia Tuesday</option>
+              <option>The Ultimate Final</option>
+              <option>Inferno Wing Challenge</option>
+              <option>Other / General Game Night</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Date</label><input type="date" class="form-control" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Name</label><input type="text" class="form-control" placeholder="John Doe" required></div>
+          <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-control" placeholder="(555) 000-0000" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Guests</label>
+            <select class="form-control"><option>1-2 People</option><option>3-4 People</option><option>5-6 People</option><option>7-10 People</option><option>10+ (Contact Us)</option></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Seating Preference</label>
+            <select class="form-control"><option>Main Screen View</option><option>Quiet Booth</option><option>Bar Seating</option></select>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary w-100" style="width: 100%; margin-top: 1rem;" onclick="alert('Booking requested! (Frontend Demo)')">Request Booking <span class="icon-right">→</span></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <!-- Same as index.html -->
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo"><img src="logo.svg" alt="Wing & Harbor Logo" /></div>
+        <p>Premium sports lounge and modern American wing restaurant. Big Games. Big Wings. Big Nights.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="Instagram"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg></a>
+          <a href="#" class="social-link" aria-label="X"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Explore</h4>
+        <div class="footer-links"><a href="index.html">Home</a><a href="home-2.html">Home 2</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="menu.html">Menu</a></div>
+      </div>
+      <div>
+        <h4 class="footer-title">Game Night</h4>
+        <div class="footer-links"><a href="events.html">Events & Schedule</a><a href="pricing.html">Pricing & Packages</a><a href="locations.html">Locations</a><a href="contact.html">Contact</a></div>
+      </div>
+      <div>
+        <h4 class="footer-title">Get Game-Day Updates</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Sign up for exclusive wing deals and event announcements.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email" aria-label="Email address"><button type="button">Subscribe <span class="icon-right">→</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom"><p>&copy; 2026 Wing & Harbor. All rights reserved.</p></div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/events.js"></script>
+</body>
+</html>
+

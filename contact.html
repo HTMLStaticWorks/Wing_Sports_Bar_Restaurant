@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wing & Harbor | Contact & Reservations</title>
+  <meta name="description" content="Let's Plan Your Next Game Night.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  
+  <style>
+    /* Contact Page Specific Styles */
+    
+    /* 01 - Hero */
+    .contact-hero {
+      height: 80vh; min-height: 600px;
+      position: relative; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding-top: var(--header-height);
+      background: linear-gradient(135deg, #ff5e00, #ffb703); border-bottom: 1px solid var(--border-color);
+    }
+    .contact-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 5%; }
+    .contact-hero h1 { color: var(--text-primary); margin-bottom: 0; }
+    
+    /* Contact Layout container */
+    .contact-layout {
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start;
+    }
+    
+    /* 02 - Reservation Form */
+    .main-res-form {
+      background: var(--bg-secondary); padding: 3rem; border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color); box-shadow: var(--card-shadow);
+    }
+    .main-res-form h2 { color: var(--accent-primary); margin-bottom: 2rem; }
+    
+    /* 03 - Contact Info */
+    .contact-info-panel {
+      background: var(--bg-primary); padding: 3rem; border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color); position: sticky; top: 120px;
+    }
+    .info-block { margin-bottom: 2.5rem; }
+    .info-block:last-child { margin-bottom: 0; }
+    .info-block h3 { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+    .info-block p, .info-block a { font-size: 1.25rem; font-weight: bold; color: var(--text-primary); }
+    
+    /* 04 - Final CTA */
+    .contact-final-cta {
+      padding: 8rem 5%; text-align: center;
+      background: #0a0f1c;
+      position: relative; color: #fff; border-top: 1px solid var(--accent-primary);
+    }
+    .contact-final-cta::before { display: none; }
+    .contact-final-cta h2, .contact-final-cta p { color: #fff !important; }
+    .contact-cta-content { position: relative; z-index: 2; }
+    
+    /* FAQ Section */
+    .faq-section { background: var(--bg-primary); }
+    .faq-container { max-width: 800px; margin: 0 auto; }
+    .faq-item {
+      background: var(--bg-secondary); border: 1px solid var(--border-color);
+      border-radius: var(--radius-md); margin-bottom: 1rem; overflow: hidden;
+    }
+    .faq-item:last-child { margin-bottom: 0; }
+    .faq-item summary {
+      padding: 1.5rem; font-weight: bold; font-size: 1.1rem; color: var(--text-primary);
+      cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '▼'; font-size: 0.8rem; color: var(--accent-primary); transition: transform 0.3s;
+    }
+    .faq-item[open] summary::after { transform: rotate(180deg); }
+    .faq-answer { padding: 0 1.5rem 1.5rem; color: var(--text-secondary); line-height: 1.6; }
+    
+    /* Map Section */
+    .map-section { background: var(--bg-secondary); padding: 0; line-height: 0; border-top: 1px solid var(--border-color); }
+    .map-container iframe { width: 100%; height: 450px; border: none; }
+
+    
+    @media (max-width: 1024px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .contact-info-panel { position: relative; top: 0; text-align: center; }
+      .social-links-wrapper { justify-content: center; }
+      .main-res-form { padding: 2rem; }
+    }
+  </style>
+<link rel="icon" type="image/png" href="assets/images/website-logo.png">
+</head>
+<body>
+
+  <!-- Overlay for mobile menu -->
+  <div class="overlay"></div>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="home-2.html" class="mobile-nav-link">Home 2</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="services.html" class="mobile-nav-link">Services</a>
+      <a href="menu.html" class="mobile-nav-link">Menu</a>
+      <a href="events.html" class="mobile-nav-link">Events</a>
+      <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+      <a href="locations.html" class="mobile-nav-link">Locations</a>
+      <a href="contact.html" class="mobile-nav-link text-accent">Contact</a>
+    </div>
+    <div class="mobile-actions">
+      <div class="mobile-controls">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme"><svg class="theme-toggle-icon" width="24" height="24" fill="none" viewBox="0 0 24 24"></svg></button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL"><svg class="rtl-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg></button>
+      </div>
+      <button class="btn btn-primary w-100" data-popup="reservation-popup">Reserve Table</button>
+    </div>
+  </nav>
+
+  <!-- Global Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo"><img src="logo.svg" alt="Wing & Harbor Logo" /></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="home-2.html" class="nav-link">Home 2</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="menu.html" class="nav-link">Menu</a></li>
+        <li><a href="events.html" class="nav-link">Events</a></li>
+        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="locations.html" class="nav-link">Locations</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme"><svg class="theme-toggle-icon" width="24" height="24" fill="none" viewBox="0 0 24 24"></svg></button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL"><svg class="rtl-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg></button>
+        <button class="btn btn-primary" data-popup="reservation-popup">Reserve Table</button>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 01 - HERO -->
+    <section class="contact-hero">
+      <div class="contact-hero-content">
+        <h1>LET'S PLAN YOUR NEXT GAME NIGHT.</h1>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <section class="section-padding" style="background: var(--bg-primary);">
+      <div class="container contact-layout">
+        
+        <!-- 02 - RESERVATION FORM -->
+        <div class="main-res-form" id="book">
+          <h2>Request a Reservation</h2>
+          <form onsubmit="event.preventDefault(); alert('Reservation Request Sent! We will confirm shortly. (Frontend Demo)');">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Full Name *</label>
+                <input type="text" class="form-control" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number *</label>
+                <input type="tel" class="form-control" placeholder="(555) 000-0000" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" class="form-control" placeholder="john@example.com" required>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Date *</label>
+                <input type="date" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Time *</label>
+                <input type="time" class="form-control" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Number of Guests *</label>
+                <select class="form-control">
+                  <option>1-2 People</option>
+                  <option>3-4 People</option>
+                  <option>5-6 People</option>
+                  <option>7-10 People</option>
+                  <option>11-20 People (Group)</option>
+                  <option>20+ (Private Event)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Location *</label>
+                <select class="form-control">
+                  <option>Downtown Arena</option>
+                  <option>Riverside Lounge</option>
+                  <option>Midtown Headquarters</option>
+                  <option>Northside Taproom</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Seating Preference</label>
+              <select class="form-control">
+                <option>No Preference</option>
+                <option>Main Screen View</option>
+                <option>Quiet Booth</option>
+                <option>High Top / Bar Area</option>
+                <option>Outdoor Patio (If Available)</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Special Requests / Message</label>
+              <textarea class="form-control" rows="4" placeholder="Let us know if you're celebrating a special occasion or need accessibility accommodations..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.25rem;">Request Reservation <span class="icon-right">→</span></button>
+          </form>
+        </div>
+        
+        <!-- 03 - CONTACT INFORMATION -->
+        <div class="contact-info-panel">
+          <h2 style="margin-bottom: 2rem;">Get in Touch</h2>
+          
+          <div class="info-block">
+            <h3>WING & HARBOR SPORTS BAR</h3>
+            <p style="color: var(--text-secondary); font-weight: normal; font-size: 1rem; margin-top: 0.5rem;">Corporate Headquarters</p>
+          </div>
+          
+          <div class="info-block">
+            <h3>Phone</h3>
+            <a href="tel:+10000000000">+1 (000) 000-0000</a>
+          </div>
+          
+          <div class="info-block">
+            <h3>Email</h3>
+            <a href="mailto:hello@example.com">hello@example.com</a>
+          </div>
+          
+          <div class="info-block">
+            <h3>Address</h3>
+            <p>Location details coming soon</p>
+          </div>
+          
+          <div style="margin-top: 3rem;">
+            <h3 style="font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 1rem;">Follow Us</h3>
+            <div class="social-links-wrapper" style="display: flex; gap: 1rem;">
+              <a href="#" class="social-link" style="width: 50px; height: 50px;"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+              <a href="#" class="social-link" style="width: 50px; height: 50px;"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg></a>
+              <a href="#" class="social-link" style="width: 50px; height: 50px;"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP SECTION -->
+    <section class="map-section">
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.257041530932!2d-73.98774708459424!3d40.75628587932696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259aacb2bc755%3A0x6fbdbf0973a5a7dc!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1680000000000!5m2!1sen!2sus" loading="lazy" aria-label="Location Map"></iframe>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="section-padding faq-section">
+      <div class="container text-center" style="margin-bottom: 3rem;">
+        <h2 style="color: var(--text-primary);">Frequently Asked Questions</h2>
+      </div>
+      <div class="container faq-container">
+        <details class="faq-item">
+          <summary>Do you accept reservations for game days?</summary>
+          <div class="faq-answer">Yes! We highly recommend reserving your table in advance for major sporting events. You can use the form on this page or call us directly to secure premium seating.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Are children allowed in the sports bar?</summary>
+          <div class="faq-answer">We are fully family-friendly until 8:00 PM. After 8:00 PM, we transition to a 21+ environment to maintain the ultimate sports lounge experience for our adult guests.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do you show pay-per-view UFC and boxing matches?</summary>
+          <div class="faq-answer">Absolutely. We show all major UFC PPV events and select high-profile boxing matches on our massive main screens. No cover charge applies if you arrive before 8 PM.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can you accommodate large parties or private events?</summary>
+          <div class="faq-answer">Yes, we have private VIP sections and can accommodate large groups for birthdays, corporate events, and fantasy drafts. Please contact us for specialized group packages.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do you have vegetarian or vegan wing options?</summary>
+          <div class="faq-answer">Yes, we offer premium cauliflower "wings" and plant-based tenders that can be tossed in any of our 12 signature sauces. We also offer dedicated vegan dips.</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 04 - FINAL CONTACT CTA -->
+    <section class="contact-final-cta">
+      <div class="contact-cta-content container">
+        <h2 style="font-size: clamp(3rem, 6vw, 4rem);">BIG GAME. GREAT FOOD. YOUR TABLE.</h2>
+        <p style="font-size: 1.25rem; margin: 2rem 0; max-width: 600px; margin-left: auto; margin-right: auto;">Don't wait until tip-off. Secure your spot now.</p>
+        <a href="#book" class="btn btn-primary">Reserve Now <span class="icon-right">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Reservation Popup (Used globally, but on this page they might use the main form instead. Kept for global consistency) -->
+  <div class="popup-wrapper" id="reservation-popup">
+    <div class="popup-overlay"></div>
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Close">✖</button>
+      <h2 style="color: var(--accent-primary);">RESERVE YOUR GAME NIGHT</h2>
+      <p style="margin-bottom: 2rem;">Book your table for the best view of the game.</p>
+      
+      <form id="res-form-popup">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Name</label><input type="text" class="form-control" placeholder="John Doe" required></div>
+          <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-control" placeholder="(555) 000-0000" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Date</label><input type="date" class="form-control" required></div>
+          <div class="form-group"><label class="form-label">Time</label><input type="time" class="form-control" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Guests</label>
+            <select class="form-control"><option>1-2 People</option><option>3-4 People</option><option>5-6 People</option><option>7-10 People</option><option>10+ (Contact Us)</option></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location</label>
+            <select class="form-control"><option>Downtown Arena</option><option>Riverside Lounge</option><option>Midtown</option></select>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary w-100" style="width: 100%; margin-top: 1rem;" onclick="alert('Reservation requested! (Frontend Demo)')">Check Availability <span class="icon-right">→</span></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <!-- Same as index.html -->
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo"><img src="logo.svg" alt="Wing & Harbor Logo" /></div>
+        <p>Premium sports lounge and modern American wing restaurant. Big Games. Big Wings. Big Nights.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="Instagram"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Facebook"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg></a>
+          <a href="#" class="social-link" aria-label="X"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Explore</h4>
+        <div class="footer-links"><a href="index.html">Home</a><a href="home-2.html">Home 2</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="menu.html">Menu</a></div>
+      </div>
+      <div>
+        <h4 class="footer-title">Game Night</h4>
+        <div class="footer-links"><a href="events.html">Events & Schedule</a><a href="pricing.html">Pricing & Packages</a><a href="locations.html">Locations</a><a href="contact.html">Contact</a></div>
+      </div>
+      <div>
+        <h4 class="footer-title">Get Game-Day Updates</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Sign up for exclusive wing deals and event announcements.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email" aria-label="Email address"><button type="button">Subscribe <span class="icon-right">→</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom"><p>&copy; 2026 Wing & Harbor. All rights reserved.</p></div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+

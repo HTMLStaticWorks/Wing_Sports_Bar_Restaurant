@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wing & Harbor | Home 2</title>
+  <meta name="description" content="Premium sports lounge and modern American wing restaurant. Big Games. Big Wings. Big Nights.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  
+  <style>
+    /* Home 2 Specific Styles */
+    
+    /* 01 - Editorial Hero */
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      padding-top: var(--header-height);
+      background: url('assets/images/home2-hero.png') center/cover no-repeat;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-split::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 100%);
+      z-index: -1;
+    }
+    .hero-split-text {
+      padding: 4rem 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: transparent;
+      color: #ffffff;
+    }
+    .hero-split-text h1 { font-size: clamp(4rem, 8vw, 7rem); line-height: 0.9; margin-bottom: 2rem; color: #ffffff; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    .hero-split-text p { color: rgba(255,255,255,0.95) !important; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+    .hero-split-image {
+      position: relative;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+    
+    .animation-box {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* 3D Pouring Animation */
+    .animation-container {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      perspective: 1000px;
+      z-index: 1;
+    }
+    
+    .glass-cup {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 130px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 4px solid rgba(255, 255, 255, 0.4);
+      border-radius: 5px 5px 20px 20px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.1), 0 20px 40px rgba(0,0,0,0.6);
+      overflow: hidden;
+      z-index: 2;
+    }
+    
+    .glass-cup::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 15%;
+      width: 15px; height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.3), rgba(255,255,255,0));
+      transform: skewX(-10deg);
+      z-index: 5;
+    }
+    
+    .liquid-inside {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(180deg, rgba(255, 160, 0, 0.9), rgba(200, 80, 0, 0.9));
+      box-shadow: inset 0 10px 20px rgba(255, 200, 100, 0.4), inset 0 -5px 15px rgba(0,0,0,0.5);
+      animation: fillGlass 4s ease-in-out infinite;
+      border-radius: 0 0 15px 15px;
+    }
+    
+    .liquid-inside::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 180, 50, 0.9);
+      border-radius: 50%;
+    }
+    
+    .bubble {
+      position: absolute;
+      bottom: 0;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      animation: bubbleRise 1.5s infinite ease-in;
+    }
+    .b-1 { left: 25%; animation-delay: 0s; }
+    .b-2 { left: 55%; animation-delay: 0.7s; width: 4px; height: 4px; }
+    .b-3 { left: 75%; animation-delay: 0.3s; }
+    
+    @keyframes bubbleRise {
+      0% { bottom: 0; opacity: 1; transform: translateX(0); }
+      100% { bottom: 90%; opacity: 0; transform: translateX(-15px); }
+    }
+    
+    .bottle-container {
+      position: absolute;
+      top: 80px;
+      left: 110px;
+      width: 80px;
+      height: 200px;
+      transform-origin: 40px 0px;
+      animation: tiltBottle 4s ease-in-out infinite;
+      z-index: 4;
+    }
+    
+    .bottle-neck {
+      position: absolute;
+      top: 0;
+      left: 25px;
+      width: 30px;
+      height: 70px;
+      background: linear-gradient(90deg, #3a1a00, #663300, #3a1a00);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+    }
+    
+    .bottle-neck::after {
+      content: '';
+      position: absolute;
+      top: 5px; left: -4px; width: 34px; height: 16px;
+      background: linear-gradient(90deg, #c5a059, #f7d58b, #c5a059);
+      border-radius: 3px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .bottle-body {
+      position: absolute;
+      top: 70px;
+      left: 10px;
+      width: 60px;
+      height: 130px;
+      background: linear-gradient(90deg, #3a1a00, #7a3a00, #3a1a00);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-top: none;
+      border-radius: 30px 30px 10px 10px;
+      box-shadow: inset -5px 0 15px rgba(255,255,255,0.1), inset 10px 0 25px rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .bottle-label {
+      width: 44px;
+      height: 60px;
+      background: #0a0a0a;
+      border: 1px solid #c5a059;
+      border-radius: 3px;
+      color: #c5a059;
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.2;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    }
+    
+    .pour-stream {
+      position: absolute;
+      top: 120px;
+      left: 145px;
+      width: 10px;
+      height: 130px;
+      background: linear-gradient(90deg, rgba(255, 140, 0, 0.8), rgba(255, 200, 80, 1), rgba(255, 140, 0, 0.8));
+      border-radius: 5px;
+      z-index: 1;
+      opacity: 0;
+      animation: pourStream 4s ease-in-out infinite;
+      box-shadow: 0 0 15px rgba(255, 140, 0, 0.8);
+    }
+    
+    @keyframes tiltBottle {
+      0%, 10% { transform: translate(120px, -30px) rotate(20deg); }
+      25%, 75% { transform: translate(0px, 40px) rotate(-105deg); }
+      90%, 100% { transform: translate(120px, -30px) rotate(20deg); }
+    }
+    
+    @keyframes pourStream {
+      0%, 25% { opacity: 0; height: 0; top: 120px; }
+      28% { opacity: 1; height: 130px; top: 120px; }
+      70% { opacity: 1; height: 130px; top: 120px; }
+      75% { opacity: 0; height: 0; top: 250px; }
+      100% { opacity: 0; height: 0; top: 250px; }
+    }
+    
+    @keyframes fillGlass {
+      0%, 28% { height: 5%; }
+      70%, 85% { height: 80%; }
+      95%, 100% { height: 5%; }
+    }
+    .hero-floating-score {
+      position: absolute; bottom: 3rem; left: -3rem;
+      background: var(--bg-secondary); padding: 1.5rem;
+      border-radius: var(--radius-md); box-shadow: var(--card-shadow);
+      display: flex; gap: 2rem; align-items: center; border: 1px solid var(--border-color);
+      animation: float 4s ease-in-out infinite;
+    }
+    [dir="rtl"] .hero-floating-score { left: auto; right: -3rem; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    
+    /* 02 - Wing Flavor Lab */
+    .flavor-lab { background: var(--bg-secondary); }
+    .lab-container {
+      display: grid; grid-template-columns: 250px 1fr; gap: 4rem; align-items: center;
+    }
+    .flavor-nav { display: flex; flex-direction: column; gap: 1rem; }
+    .flavor-btn {
+      background: transparent; border: 1px solid var(--border-color); color: var(--text-primary);
+      padding: 1rem; text-align: left; font-family: var(--font-heading); font-size: 1.25rem;
+      border-radius: var(--radius-sm); cursor: pointer; transition: all var(--transition-fast);
+    }
+    [dir="rtl"] .flavor-btn { text-align: right; }
+    .flavor-btn.active, .flavor-btn:hover { background: var(--accent-primary); border-color: var(--accent-primary); color: #fff; }
+    
+    .flavor-display { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .flavor-img-wrapper { position: relative; }
+    .flavor-img-wrapper img { border-radius: 50%; box-shadow: var(--card-shadow); transition: transform 0.3s ease; }
+    
+    /* 03 - Process Timeline */
+    .timeline-section { background: var(--bg-primary); }
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 3rem; }
+    [dir="rtl"] .timeline { padding-left: 0; padding-right: 3rem; }
+    .timeline::before {
+      content: ''; position: absolute; top: 0; left: 1rem; width: 2px; height: 100%; background: var(--border-color);
+    }
+    [dir="rtl"] .timeline::before { left: auto; right: 1rem; }
+    
+    .timeline-item { position: relative; margin-bottom: 4rem; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -2.5rem; top: 0; width: 1.5rem; height: 1.5rem;
+      background: var(--accent-primary); border-radius: 50%;
+      border: 4px solid var(--bg-primary); z-index: 2;
+    }
+    [dir="rtl"] .timeline-dot { left: auto; right: -2.5rem; }
+    .timeline-content h3 { font-size: 2.5rem; color: var(--text-primary); margin-bottom: 0.5rem; }
+    .step-number { font-family: var(--font-heading); color: var(--accent-primary); font-size: 1.5rem; }
+    
+    /* 04 - Sports Wall */
+    .sports-wall { background: var(--bg-secondary); }
+    .masonry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-auto-rows: 250px;
+      gap: 1rem;
+    }
+    .masonry-item { border-radius: var(--radius-sm); overflow: hidden; position: relative; }
+    .masonry-item img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-slow); }
+    .masonry-item:hover img { transform: scale(1.1); }
+    .masonry-item.large { grid-column: span 2; grid-row: span 2; }
+    .masonry-overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0.6);
+      display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity var(--transition-fast);
+    }
+    .masonry-item:hover .masonry-overlay { opacity: 1; }
+    .masonry-overlay h4 { color: #fff; font-size: 1.5rem; margin: 0; }
+    
+    /* 05 - Group Experience */
+    .group-section { background: var(--bg-primary); }
+    .group-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .group-images {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; position: relative;
+    }
+    .group-images img { border-radius: var(--radius-md); object-fit: cover; width: 100%; }
+    .group-img-1 { height: 300px; }
+    .group-img-2 { height: 200px; transform: translateY(100px); }
+    
+    /* 06 - Reservation Panel */
+    .reservation-panel {
+      margin: 5rem 5%; background: #0a0f1c; border-radius: var(--radius-lg);
+      padding: 4rem; border: 1px solid var(--accent-primary); text-align: center; color: #fff;
+    }
+    .reservation-panel h2, .reservation-panel p { color: #fff !important; }
+    
+    @media (max-width: 1024px) {
+      .hero-split { grid-template-columns: 1fr; }
+      .hero-split-text {
+        text-align: center;
+        align-items: center;
+      }
+      .hero-split-image { height: auto; min-height: 500px; padding: 4rem 0; }
+      .hero-floating-score { 
+        left: 0; 
+        right: 0; 
+        margin: 0 auto; 
+        width: fit-content; 
+        bottom: 2rem; 
+      }
+      .lab-container { grid-template-columns: 1fr; }
+      .flavor-nav { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+      .flavor-display { grid-template-columns: 1fr; text-align: center; }
+      .group-layout { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      .masonry-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+      }
+      .masonry-item.large {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+      .group-images {
+        grid-template-columns: 1fr;
+      }
+      .group-img-2 {
+        transform: none;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .animation-box {
+        transform: scale(0.75);
+      }
+      .hero-split-image {
+        overflow: hidden;
+      }
+    }
+  </style>
+<link rel="icon" type="image/png" href="assets/images/website-logo.png">
+</head>
+<body>
+
+  <!-- Overlay for mobile menu -->
+  <div class="overlay"></div>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="home-2.html" class="mobile-nav-link text-accent">Home 2</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="services.html" class="mobile-nav-link">Services</a>
+      <a href="menu.html" class="mobile-nav-link">Menu</a>
+      <a href="events.html" class="mobile-nav-link">Events</a>
+      <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+      <a href="locations.html" class="mobile-nav-link">Locations</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+    <div class="mobile-actions">
+      <div class="mobile-controls">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+          <svg class="theme-toggle-icon" width="24" height="24" fill="none" viewBox="0 0 24 24"></svg>
+        </button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+          <svg class="rtl-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg>
+        </button>
+      </div>
+      <button class="btn btn-primary w-100" data-popup="reservation-popup">Reserve Table</button>
+    </div>
+  </nav>
+
+  <!-- Global Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.svg" alt="Wing & Harbor Logo" />
+        
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="home-2.html" class="nav-link active">Home 2</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="menu.html" class="nav-link">Menu</a></li>
+        <li><a href="events.html" class="nav-link">Events</a></li>
+        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="locations.html" class="nav-link">Locations</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+          <svg class="theme-toggle-icon" width="24" height="24" fill="none" viewBox="0 0 24 24"></svg>
+        </button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+          <svg class="rtl-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"/><path d="M3 7h18"/><path d="M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg>
+        </button>
+        <button class="btn btn-primary" data-popup="reservation-popup">Reserve Table</button>
+        <button class="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 01 - EDITORIAL HERO -->
+    <section class="hero-split">
+      <div class="hero-split-text">
+        <span class="text-accent" style="font-weight: bold; letter-spacing: 2px; margin-bottom: 1rem;">THE PREMIUM EXPERIENCE</span>
+        <h1>GAME NIGHT<br>STARTS HERE.</h1>
+        <p style="font-size: 1.1rem; max-width: 500px; margin-bottom: 2rem;">Elevate your game-day with chef-driven wings, craft drinks, and an atmosphere built for the true fan.</p>
+        <div>
+          <a href="locations.html" class="btn btn-primary">Find Your Location <span class="icon-right">→</span></a>
+        </div>
+      </div>
+      <div class="hero-split-image">
+        <div class="animation-box">
+          <div class="animation-container">
+            <div class="pour-stream"></div>
+            <div class="glass-cup">
+              <div class="liquid-inside">
+                <div class="bubble b-1"></div>
+                <div class="bubble b-2"></div>
+                <div class="bubble b-3"></div>
+              </div>
+            </div>
+            <div class="bottle-container">
+              <div class="bottle-neck"></div>
+              <div class="bottle-body">
+                <div class="bottle-label">WING<br>&<br>HARBOR</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+      </div>
+    </section>
+
+    <!-- 02 - WING FLAVOR LAB -->
+    <section class="section-padding flavor-lab">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: 4rem;">
+          <h2>Wing Flavor Lab</h2>
+          <p>Discover our 12 signature house-made sauces.</p>
+        </div>
+        
+        <div class="lab-container">
+          <div class="flavor-nav" id="flavor-nav">
+            <button class="flavor-btn active" data-flavor="mild">Mild & Savory</button>
+            <button class="flavor-btn" data-flavor="medium">Medium Kick</button>
+            <button class="flavor-btn" data-flavor="hot">Hot Buffalo</button>
+            <button class="flavor-btn" data-flavor="extreme">Extreme Heat</button>
+            <button class="flavor-btn" data-flavor="sweet">Sweet & Sticky</button>
+            <button class="flavor-btn" data-flavor="smoky">Smoky BBQ</button>
+          </div>
+          
+          <div class="flavor-display">
+            <div class="flavor-img-wrapper">
+              <img id="flavor-image" src="assets/images/Mild & Savory.png" alt="Wing Flavor" style="width: 100%; max-width: 400px; margin: 0 auto; display: block;">
+            </div>
+            <div class="flavor-info">
+              <h3 id="flavor-title" style="font-size: 3rem; color: var(--accent-primary);">Mild & Savory</h3>
+              <div style="display: flex; gap: 5px; margin: 1rem 0;" id="flavor-heat">
+                <div style="width: 15px; height: 15px; border-radius: 50%; background: var(--accent-primary);"></div>
+                <div style="width: 15px; height: 15px; border-radius: 50%; background: var(--border-color);"></div>
+                <div style="width: 15px; height: 15px; border-radius: 50%; background: var(--border-color);"></div>
+                <div style="width: 15px; height: 15px; border-radius: 50%; background: var(--border-color);"></div>
+                <div style="width: 15px; height: 15px; border-radius: 50%; background: var(--border-color);"></div>
+              </div>
+              <p id="flavor-desc" style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">Rich, buttery, and packed with roasted garlic. The perfect mild choice for those who love bold flavor without the burn.</p>
+              <a href="menu.html" class="btn btn-outline">Explore Full Menu <span class="icon-right">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 - WHY OUR WINGS -->
+    <section class="section-padding timeline-section">
+      <div class="container text-center" style="margin-bottom: 4rem;">
+        <h2>The Perfect Wing.</h2>
+        <p>Our commitment to doing it right, every single time.</p>
+      </div>
+      
+      <div class="container">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="step-number">01</div>
+              <h3>Season & Prep</h3>
+              <p class="text-secondary">We start with fresh, never frozen jumbo wings. Hand-rubbed with our secret spice blend and rested for 24 hours to lock in maximum flavor.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="step-number">02</div>
+              <h3>The Double Crisp</h3>
+              <p class="text-secondary">Fried twice. Once to cook through, and a flash fry right before serving to create that unmistakable shatter-crisp exterior.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="step-number">03</div>
+              <h3>The Sauce Toss</h3>
+              <p class="text-secondary">Transferred hot to a steel bowl and tossed vigorously in your choice of our 12 house-made signature sauces until perfectly coated.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="step-number">04</div>
+              <h3>Serve Hot</h3>
+              <p class="text-secondary">Delivered to your table steaming hot, right as the whistle blows. Served with house-made ranch, bleu cheese, and crisp celery.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 - SPORTS WALL -->
+    <section class="sports-wall section-padding">
+      <div class="container text-center" style="margin-bottom: 3rem;">
+        <h2>The Atmosphere</h2>
+        <p>This is what game night is supposed to feel like.</p>
+      </div>
+      <div class="container">
+        <div class="masonry-grid">
+          <div class="masonry-item large">
+            <img src="assets/images/Sunday Football Watch Party.png" alt="Fans celebrating">
+            <div class="masonry-overlay"><h4>Football Sunday</h4></div>
+          </div>
+          <div class="masonry-item">
+            <img src="assets/images/Rivalry Night Courtside.png" alt="Basketball hoop">
+            <div class="masonry-overlay"><h4>Courtside Energy</h4></div>
+          </div>
+          <div class="masonry-item">
+            <img src="assets/images/Draft Beer Pitcher.png" alt="Drinks">
+            <div class="masonry-overlay"><h4>Post-Game Pints</h4></div>
+          </div>
+          <div class="masonry-item">
+            <img src="assets/images/Classic Cheeseburger.png" alt="Burgers">
+            <div class="masonry-overlay"><h4>Championship Eats</h4></div>
+          </div>
+          <div class="masonry-item">
+            <img src="assets/images/Bring Everyone Together.png" alt="Group of friends">
+            <div class="masonry-overlay"><h4>The Crew</h4></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 - GROUP EXPERIENCE -->
+    <section class="section-padding group-section">
+      <div class="container group-layout">
+        <div class="group-images">
+          <img src="assets/images/Built for the Whole Crew1.png" alt="Large table" class="group-img-1">
+          <img src="assets/images/Built for the Whole Crew2.png" alt="Friends eating" class="group-img-2">
+        </div>
+        <div>
+          <h2>Built for the Whole Crew.</h2>
+          <p style="font-size: 1.1rem; margin-bottom: 2rem;">Whether it's a fantasy football draft, a birthday celebration, or just a Tuesday night with colleagues, our group tables offer prime screen views and massive wing platters designed to share.</p>
+          <ul style="margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+            <li style="display: flex; gap: 1rem;"><span class="text-accent">✔</span> Dedicated 75" screen for your table</li>
+            <li style="display: flex; gap: 1rem;"><span class="text-accent">✔</span> VIP Crew Packs with 100+ wings</li>
+            <li style="display: flex; gap: 1rem;"><span class="text-accent">✔</span> Guaranteed seating for major events</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Plan a Group Night <span class="icon-right">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 - RESERVATION CTA -->
+    <section class="container">
+      <div class="reservation-panel">
+        <h2>Your Table. Your Team. Your Game.</h2>
+        <p style="margin-bottom: 2rem;">Don't miss a single play. Reserve your table now for upcoming events.</p>
+        
+        <form style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;" onsubmit="event.preventDefault(); alert('Reservation submitted!');">
+          <input type="date" class="form-control" style="width: auto; flex: 1; min-width: 150px;" required>
+          <input type="time" class="form-control" style="width: auto; flex: 1; min-width: 150px;" required>
+          <select class="form-control" style="width: auto; flex: 1; min-width: 150px;">
+            <option>2 Guests</option>
+            <option>4 Guests</option>
+            <option>6 Guests</option>
+            <option>8+ Guests</option>
+          </select>
+          <button type="submit" class="btn btn-primary" style="flex: 1; min-width: 150px;">Reserve Now <span class="icon-right">→</span></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Reservation Popup -->
+  <div class="popup-wrapper" id="reservation-popup">
+    <!-- Same as index.html -->
+    <div class="popup-overlay"></div>
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Close">✖</button>
+      <h2 style="color: var(--accent-primary);">RESERVE YOUR GAME NIGHT</h2>
+      <p style="margin-bottom: 2rem;">Book your table for the best view of the game.</p>
+      
+      <form id="res-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control" placeholder="(555) 000-0000" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Time</label>
+            <input type="time" class="form-control" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Guests</label>
+            <select class="form-control">
+              <option>1-2 People</option>
+              <option>3-4 People</option>
+              <option>5-6 People</option>
+              <option>7-10 People (Crew Pack)</option>
+              <option>10+ (Contact Us)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location</label>
+            <select class="form-control">
+              <option>Downtown Arena</option>
+              <option>Riverside Lounge</option>
+              <option>Midtown</option>
+            </select>
+          </div>
+        </div>
+        
+        <button type="button" class="btn btn-primary w-100" style="width: 100%; margin-top: 1rem;" onclick="alert('Reservation requested! (Frontend Demo)')">Check Availability <span class="icon-right">→</span></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <!-- Same as index.html -->
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="logo.svg" alt="Wing & Harbor Logo" />
+        </div>
+        <p>Premium sports lounge and modern American wing restaurant. Big Games. Big Wings. Big Nights.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="X">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="footer-title">Explore</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="home-2.html">Home 2</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Services</a>
+          <a href="menu.html">Menu</a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="footer-title">Game Night</h4>
+        <div class="footer-links">
+          <a href="events.html">Events & Schedule</a>
+          <a href="pricing.html">Pricing & Packages</a>
+          <a href="locations.html">Locations</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="footer-title">Get Game-Day Updates</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Sign up for exclusive wing deals and event announcements.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email" aria-label="Email address">
+          <button type="button">Subscribe <span class="icon-right">→</span></button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Wing & Harbor. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Flavor Lab specific JS
+    document.addEventListener('DOMContentLoaded', () => {
+      const flavorData = {
+        mild: { title: 'Mild & Savory', desc: 'Rich, buttery, and packed with roasted garlic. The perfect mild choice for those who love bold flavor without the burn.', heat: 1, img: 'assets/images/Mild & Savory.png' },
+        medium: { title: 'Medium Kick', desc: 'The authentic game-day standard. Tangy, buttery, and just the right amount of cayenne pepper kick.', heat: 3, img: 'assets/images/Medium Kick.png' },
+        hot: { title: 'Hot Buffalo', desc: 'Inspired by the legendary hot chicken. Intense cayenne spice that builds with every single bite.', heat: 4, img: 'assets/images/Hot Buffalo.png' },
+        extreme: { title: 'Extreme Heat', desc: 'A warning should come with these. Blistering heat for those who want to test their limits.', heat: 5, img: 'assets/images/Extreme Heat.png' },
+        sweet: { title: 'Sweet & Sticky', desc: 'Sweet local honey mixed with fiery habanero. The perfect balance of sweet and spicy.', heat: 3, img: 'assets/images/Sweet & Sticky.png' },
+        smoky: { title: 'Smoky BBQ', desc: 'Deep hickory smoke with a sweet molasses finish. Thick, sticky, and incredibly savory.', heat: 2, img: 'assets/images/Smoky BBQ.png' }
+      };
+
+      const buttons = document.querySelectorAll('.flavor-btn');
+      const title = document.getElementById('flavor-title');
+      const desc = document.getElementById('flavor-desc');
+      const img = document.getElementById('flavor-image');
+      const heatContainer = document.getElementById('flavor-heat');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          const type = btn.getAttribute('data-flavor');
+          const data = flavorData[type];
+          
+          // Animate image
+          img.style.transform = 'scale(0.8)';
+          img.style.opacity = '0';
+          
+          setTimeout(() => {
+            title.textContent = data.title;
+            desc.textContent = data.desc;
+            img.src = data.img;
+            
+            // Update heat dots
+            heatContainer.innerHTML = '';
+            for(let i=1; i<=5; i++) {
+              heatContainer.innerHTML += `<div style="width: 15px; height: 15px; border-radius: 50%; background: ${i <= data.heat ? 'var(--accent-primary)' : 'var(--border-color)'};"></div>`;
+            }
+            
+            img.style.transform = 'scale(1)';
+            img.style.opacity = '1';
+          }, 300);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
