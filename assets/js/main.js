@@ -10,7 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initPopups();
   initScrollToTop();
+  initCartBtn();
 });
+
+function initCartBtn() {
+  document.querySelectorAll('.cart-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      window.location.href = 'cart.html';
+    });
+  });
+}
 
 /* ==========================================================================
    Theme Management

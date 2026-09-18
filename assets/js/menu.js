@@ -3,6 +3,14 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  window.addToCart = function(itemStr) {
+    const item = JSON.parse(decodeURIComponent(itemStr));
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(item);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    window.location.href = 'cart.html';
+  };
+
   const menuData = [
     { id: 1, category: 'wings', name: 'Classic Bone-In Wings', desc: 'Jumbo wings, double fried for maximum crunch. Tossed in your choice of sauce.', price: '$14.99 (8pc)', img: 'assets/images/Classic Bone-In Wings.png' },
     { id: 2, category: 'wings', name: 'The Game-Day Box', desc: '24 wings, 3 sauces, large fries, and dips. Perfect for the table.', price: '$39.99', img: 'assets/images/The Game-Day Box.png' },
@@ -55,7 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <h3 style="font-size: 1.25rem; margin: 0; color: var(--text-primary);">${item.name}</h3>
             <span style="font-weight: bold; color: var(--accent-primary);">${item.price}</span>
           </div>
-          <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">${item.desc}</p>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0 0 1rem 0;">${item.desc}</p>
+          <button class="btn btn-outline" style="width: 100%; margin-top: auto; padding: 0.5rem; font-size: 0.9rem;" onclick="addToCart('${encodeURIComponent(JSON.stringify(item))}')">ADD TO CART</button>
         </div>
       `;
       // Stagger animation
