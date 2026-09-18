@@ -569,6 +569,10 @@ button, input, select, textarea { font-family: inherit; }
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   cursor: pointer;
   transition: background var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
 }
 [dir="rtl"] .newsletter-form button { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
 .newsletter-form button:hover { background: var(--accent-secondary); }
