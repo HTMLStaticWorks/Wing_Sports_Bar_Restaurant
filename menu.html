@@ -21,11 +21,12 @@
       height: 80vh; min-height: 600px;
       position: relative; display: flex; align-items: center; justify-content: center;
       text-align: center; padding-top: var(--header-height);
-      background: linear-gradient(135deg, #ff5e00, #ffb703);
+      background: url('assets/images/menu.png') center/cover no-repeat;
     }
+    .menu-hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 1; }
     
     .menu-hero-content { position: relative; z-index: 2; max-width: 900px; padding: 0 5%; }
-    .menu-hero h1 { color: var(--text-primary); font-size: clamp(3rem, 7vw, 6rem); text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .menu-hero h1 { color: #ffffff !important; font-size: clamp(3rem, 7vw, 6rem); text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
     
     /* 02 - Menu Explorer */
     .menu-explorer { background: var(--bg-primary); }
@@ -94,6 +95,11 @@
     .menu-cta-section { padding: 8rem 5%; text-align: center; background: #0a0f1c; color: #fff; border-top: 1px solid var(--accent-primary); }
     .menu-cta-section h2, .menu-cta-section p { color: #fff !important; }
     .menu-cta-group { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+    
+    .menu-cta-group .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      color: #ffffff !important;
+    }
     
     /* Popup overrides for Wing Box builder */
     #wing-box-popup .popup-content { max-width: 800px; }

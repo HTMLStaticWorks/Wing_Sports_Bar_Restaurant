@@ -54,7 +54,7 @@
     
     .hero-subtitle {
       font-size: 1.25rem;
-      color: var(--text-secondary);
+      color: #ffffff;
       font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -242,15 +242,12 @@
       padding: 8rem 0;
     }
     .scroll-container {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
-      overflow-x: auto;
       padding: 1rem 5%;
-      scrollbar-width: thin;
-      scrollbar-color: var(--accent-primary) var(--bg-secondary);
     }
     .exp-card {
-      min-width: 400px;
       border-radius: var(--radius-lg);
       overflow: hidden;
       position: relative;
@@ -325,13 +322,18 @@
         flex: 0 0 calc(50% - 1rem);
         max-width: calc(50% - 1rem);
       }
+      .scroll-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
     @media (max-width: 768px) {
       .scoreboard-grid .score-card {
         flex: 0 0 100%;
         max-width: 100%;
       }
-      .exp-card { min-width: 280px; }
+      .scroll-container {
+        grid-template-columns: 1fr;
+      }
       .final-cta h2 { font-size: 3rem; }
     }
   </style>
@@ -438,7 +440,8 @@
           <img src="assets/images/Garlic Parmesan.png" class="sauce-img-placeholder" alt="Garlic Parmesan">
           <div class="sauce-content">
             <h3>Garlic Parmesan</h3>
-            <div class="heat-indicator">
+            <div class="heat-indicator" style="align-items: center;">
+              <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; margin-right: 0.5rem; color: var(--text-secondary);">Spice Level:</span>
               <div class="heat-dot active"></div>
               <div class="heat-dot"></div>
               <div class="heat-dot"></div>
@@ -453,7 +456,8 @@
           <img src="assets/images/Smoked BBQ.png" class="sauce-img-placeholder" alt="Smoked BBQ">
           <div class="sauce-content">
             <h3>Smoked BBQ</h3>
-            <div class="heat-indicator">
+            <div class="heat-indicator" style="align-items: center;">
+              <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; margin-right: 0.5rem; color: var(--text-secondary);">Spice Level:</span>
               <div class="heat-dot active"></div>
               <div class="heat-dot active"></div>
               <div class="heat-dot"></div>
@@ -468,7 +472,8 @@
           <img src="assets/images/Classic Buffalo.png" class="sauce-img-placeholder" alt="Classic Buffalo">
           <div class="sauce-content">
             <h3>Classic Buffalo</h3>
-            <div class="heat-indicator">
+            <div class="heat-indicator" style="align-items: center;">
+              <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; margin-right: 0.5rem; color: var(--text-secondary);">Spice Level:</span>
               <div class="heat-dot active"></div>
               <div class="heat-dot active"></div>
               <div class="heat-dot active"></div>
@@ -483,7 +488,8 @@
           <img src="assets/images/Honey Heat.png" class="sauce-img-placeholder" alt="Honey Heat">
           <div class="sauce-content">
             <h3>Honey Heat</h3>
-            <div class="heat-indicator">
+            <div class="heat-indicator" style="align-items: center;">
+              <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; margin-right: 0.5rem; color: var(--text-secondary);">Spice Level:</span>
               <div class="heat-dot active"></div>
               <div class="heat-dot active"></div>
               <div class="heat-dot active"></div>
@@ -498,7 +504,8 @@
           <img src="assets/images/Nashville Fire.png" class="sauce-img-placeholder" alt="Nashville Fire">
           <div class="sauce-content">
             <h3>Nashville Fire</h3>
-            <div class="heat-indicator">
+            <div class="heat-indicator" style="align-items: center;">
+              <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; margin-right: 0.5rem; color: var(--text-secondary);">Spice Level:</span>
               <div class="heat-dot active"></div>
               <div class="heat-dot active"></div>
               <div class="heat-dot active"></div>

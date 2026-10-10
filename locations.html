@@ -21,10 +21,11 @@
       height: 80vh; min-height: 600px;
       position: relative; display: flex; align-items: center; justify-content: center;
       text-align: center; padding-top: var(--header-height);
-      background: linear-gradient(135deg, #ff5e00, #ffb703); border-bottom: 1px solid var(--border-color);
+      background: url('assets/images/location.png') center/cover no-repeat; border-bottom: 1px solid var(--border-color);
     }
+    .loc-hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 1; }
     .loc-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 5%; }
-    .loc-hero h1 { color: var(--text-primary); margin-bottom: 1rem; }
+    .loc-hero h1 { color: #ffffff !important; margin-bottom: 1rem; }
     
     /* 02 - Location Finder */
     .loc-finder-section { background: var(--bg-primary); }
@@ -86,6 +87,10 @@
     
     .loc-cta-buttons {
       display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+    .loc-cta-buttons .btn-outline:hover {
+      background-color: #fff !important;
+      color: #0a0f1c !important;
     }
     @media (min-width: 1024px) {
       .loc-cta-buttons { flex-wrap: nowrap; }

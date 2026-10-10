@@ -21,11 +21,12 @@
       height: 80vh; min-height: 600px;
       position: relative; display: flex; align-items: center; justify-content: center;
       text-align: center; padding-top: var(--header-height);
-      background: linear-gradient(135deg, #ff5e00, #ffb703);
+      background: url('assets/images/about.png') center/cover no-repeat;
     }
+    .about-hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 1; }
     
     .about-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 5%; }
-    .about-hero h1 { color: var(--text-primary); margin-bottom: 0; }
+    .about-hero h1 { color: #ffffff !important; margin-bottom: 0; }
     
     /* 02 - Our Story */
     .story-section { background: var(--bg-primary); }
@@ -68,7 +69,8 @@
     /* 04 - Community */
     .community-section { background: var(--bg-primary); text-align: center; }
     .community-gallery {
-      display: flex; gap: 1rem; overflow-x: auto; padding: 2rem 5%;
+      display: flex; gap: 1rem; overflow-x: auto; 
+      padding: 2rem max(2rem, calc((100vw - var(--max-width)) / 2 + 2rem));
       scrollbar-width: none; margin-bottom: 3rem;
     }
     .community-gallery::-webkit-scrollbar { display: none; }

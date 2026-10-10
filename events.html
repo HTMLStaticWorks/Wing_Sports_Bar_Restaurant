@@ -21,11 +21,12 @@
       height: 80vh; min-height: 600px;
       position: relative; display: flex; align-items: center; justify-content: center;
       padding-top: var(--header-height);
-      background: linear-gradient(135deg, #ff5e00, #ffb703);
+      background: url('assets/images/events.png') center/cover no-repeat;
     }
+    .events-hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 1; }
     
     .events-hero-content { position: relative; z-index: 2; max-width: 600px; padding: 0 5%; }
-    .events-hero h1 { color: var(--text-primary); margin-bottom: 1rem; }
+    .events-hero h1 { color: #ffffff !important; margin-bottom: 1rem; }
     
     /* 02 - Event Calendar */
     .event-calendar-section { background: var(--bg-primary); }

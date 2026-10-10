@@ -21,10 +21,11 @@
       height: 80vh; min-height: 600px;
       position: relative; display: flex; align-items: center; justify-content: center;
       text-align: center; padding-top: var(--header-height);
-      background: linear-gradient(135deg, #ff5e00, #ffb703);
+      background: url('assets/images/service.png') center/cover no-repeat;
     }
+    .services-hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 1; }
     .services-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 5%; }
-    .services-hero h1 { color: var(--text-primary); margin-bottom: 1rem; }
+    .services-hero h1 { color: #ffffff !important; margin-bottom: 1rem; }
     .services-hero p { font-size: 1.25rem; color: var(--text-secondary); }
     
     /* 02 - Service Experience */
@@ -55,8 +56,9 @@
     /* 03 - Special Experiences */
     .special-exp-section { background: var(--bg-primary); overflow: hidden; }
     .horizontal-scroll-wrap {
-      display: flex; gap: 2rem; padding: 2rem 2%; flex-wrap: wrap; justify-content: center; overflow-x: visible;
-      max-width: 1600px;
+      display: flex; gap: 2rem; 
+      padding: 2rem max(2rem, calc((100vw - var(--max-width)) / 2 + 2rem)); 
+      flex-wrap: wrap; justify-content: center; overflow-x: visible;
       margin: 0 auto;
     }
     
