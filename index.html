@@ -170,11 +170,32 @@
       transition: transform var(--transition-bounce);
     }
     
-    .sauce-card:hover .sauce-img-placeholder { transform: scale(1.1) rotate(5deg); }
+    .sauce-card:hover .sauce-img-placeholder { transform: scale(1.05); }
     
-    .heat-indicator { display: flex; justify-content: center; gap: 5px; margin: 1rem 0; }
-    .heat-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-color); }
-    .heat-dot.active { background: var(--accent-primary); }
+    /* Heat Map Bar Design */
+    .heat-indicator { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 1rem 0; }
+    .heat-label-text { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); }
+    .heat-bar-wrap { display: flex; gap: 3px; align-items: center; }
+    .heat-seg {
+      width: 22px; height: 8px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+    }
+    .heat-seg.s1.lit { background: #4caf50; box-shadow: 0 0 6px #4caf5088; }
+    .heat-seg.s2.lit { background: #cddc39; box-shadow: 0 0 6px #cddc3988; }
+    .heat-seg.s3.lit { background: #ff9800; box-shadow: 0 0 6px #ff980088; }
+    .heat-seg.s4.lit { background: #f44336; box-shadow: 0 0 6px #f4433688; }
+    .heat-seg.s5.lit { background: #9c27b0; box-shadow: 0 0 8px #9c27b099; }
+    .heat-level-tag {
+      font-size: 0.65rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.5px; padding: 2px 7px;
+      border-radius: 20px; margin-left: 4px;
+    }
+    .tag-mild   { background: #4caf5022; color: #4caf50; border: 1px solid #4caf5055; }
+    .tag-medium { background: #ff980022; color: #ff9800; border: 1px solid #ff980055; }
+    .tag-hot    { background: #f4433622; color: #f44336; border: 1px solid #f4433655; }
+    .tag-xhot   { background: #9c27b022; color: #9c27b0; border: 1px solid #9c27b055; }
     
     /* 03 - Live Board */
     .scoreboard-section { background: var(--bg-primary); }
@@ -241,24 +262,38 @@
       position: relative;
       padding: 8rem 0;
     }
-    .scroll-container {
+    /* Bento Grid Layout */
+    .bento-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 320px 240px;
+      gap: 1.2rem;
       padding: 1rem 5%;
+      max-width: 1300px;
+      margin: 0 auto;
     }
     .exp-card {
       border-radius: var(--radius-lg);
       overflow: hidden;
       position: relative;
+      cursor: pointer;
     }
-    .exp-card img { width: 100%; height: 300px; object-fit: cover; transition: transform var(--transition-normal); }
-    .exp-card:hover img { transform: scale(1.1); }
+    .exp-card:first-child {
+      grid-row: span 2;
+    }
+    .exp-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+    .exp-card:hover img { transform: scale(1.06); }
     .exp-overlay {
-      position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      position: absolute; bottom: 0; left: 0; width: 100%; padding: 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
       color: #fff;
+      transition: padding 0.3s ease;
     }
+    .exp-card:hover .exp-overlay { padding-bottom: 2rem; }
+    .exp-overlay h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+    .exp-overlay p { font-size: 0.85rem; opacity: 0.85; margin: 0; }
+    .exp-card:first-child .exp-overlay h3 { font-size: 1.5rem; }
+    .exp-card:first-child .exp-overlay p { font-size: 1rem; }
     
     /* 06 - Final CTA */
     .final-cta {
@@ -322,18 +357,23 @@
         flex: 0 0 calc(50% - 1rem);
         max-width: calc(50% - 1rem);
       }
-      .scroll-container {
-        grid-template-columns: repeat(2, 1fr);
+      .bento-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
       }
+      .exp-card:first-child { grid-row: span 1; }
     }
     @media (max-width: 768px) {
       .scoreboard-grid .score-card {
         flex: 0 0 100%;
         max-width: 100%;
       }
-      .scroll-container {
+      .bento-grid {
         grid-template-columns: 1fr;
+        grid-template-rows: auto;
       }
+      .exp-card:first-child { grid-row: span 1; }
+      .exp-card img { height: 220px; }
       .final-cta h2 { font-size: 3rem; }
     }
   </style>
@@ -440,13 +480,16 @@
           <img src="assets/images/Garlic Parmesan.png" class="sauce-img-placeholder" alt="Garlic Parmesan">
           <div class="sauce-content">
             <h3>Garlic Parmesan</h3>
-            <div class="heat-indicator" style="align-items: center;">
-              <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; margin-right: 0.5rem; color: var(--text-secondary);">Spice Level:</span>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot"></div>
-              <div class="heat-dot"></div>
-              <div class="heat-dot"></div>
-              <div class="heat-dot"></div>
+            <div class="heat-indicator">
+              <span class="heat-label-text">Heat</span>
+              <div class="heat-bar-wrap">
+                <div class="heat-seg s1 lit"></div>
+                <div class="heat-seg s2"></div>
+                <div class="heat-seg s3"></div>
+                <div class="heat-seg s4"></div>
+                <div class="heat-seg s5"></div>
+              </div>
+              <span class="heat-level-tag tag-mild">Mild</span>
             </div>
             <p class="text-secondary" style="font-size: 0.9rem;">Rich, buttery, and packed with roasted garlic.</p>
           </div>
@@ -456,13 +499,16 @@
           <img src="assets/images/Smoked BBQ.png" class="sauce-img-placeholder" alt="Smoked BBQ">
           <div class="sauce-content">
             <h3>Smoked BBQ</h3>
-            <div class="heat-indicator" style="align-items: center;">
-              <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; margin-right: 0.5rem; color: var(--text-secondary);">Spice Level:</span>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot"></div>
-              <div class="heat-dot"></div>
-              <div class="heat-dot"></div>
+            <div class="heat-indicator">
+              <span class="heat-label-text">Heat</span>
+              <div class="heat-bar-wrap">
+                <div class="heat-seg s1 lit"></div>
+                <div class="heat-seg s2 lit"></div>
+                <div class="heat-seg s3"></div>
+                <div class="heat-seg s4"></div>
+                <div class="heat-seg s5"></div>
+              </div>
+              <span class="heat-level-tag tag-mild">Medium</span>
             </div>
             <p class="text-secondary" style="font-size: 0.9rem;">Deep hickory smoke with a sweet molasses finish.</p>
           </div>
@@ -472,13 +518,16 @@
           <img src="assets/images/Classic Buffalo.png" class="sauce-img-placeholder" alt="Classic Buffalo">
           <div class="sauce-content">
             <h3>Classic Buffalo</h3>
-            <div class="heat-indicator" style="align-items: center;">
-              <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; margin-right: 0.5rem; color: var(--text-secondary);">Spice Level:</span>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot"></div>
-              <div class="heat-dot"></div>
+            <div class="heat-indicator">
+              <span class="heat-label-text">Heat</span>
+              <div class="heat-bar-wrap">
+                <div class="heat-seg s1 lit"></div>
+                <div class="heat-seg s2 lit"></div>
+                <div class="heat-seg s3 lit"></div>
+                <div class="heat-seg s4"></div>
+                <div class="heat-seg s5"></div>
+              </div>
+              <span class="heat-level-tag tag-hot">Hot</span>
             </div>
             <p class="text-secondary" style="font-size: 0.9rem;">The authentic game-day standard.</p>
           </div>
@@ -488,13 +537,16 @@
           <img src="assets/images/Honey Heat.png" class="sauce-img-placeholder" alt="Honey Heat">
           <div class="sauce-content">
             <h3>Honey Heat</h3>
-            <div class="heat-indicator" style="align-items: center;">
-              <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; margin-right: 0.5rem; color: var(--text-secondary);">Spice Level:</span>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot"></div>
-              <div class="heat-dot"></div>
+            <div class="heat-indicator">
+              <span class="heat-label-text">Heat</span>
+              <div class="heat-bar-wrap">
+                <div class="heat-seg s1 lit"></div>
+                <div class="heat-seg s2 lit"></div>
+                <div class="heat-seg s3 lit"></div>
+                <div class="heat-seg s4 lit"></div>
+                <div class="heat-seg s5"></div>
+              </div>
+              <span class="heat-level-tag tag-hot">Spicy</span>
             </div>
             <p class="text-secondary" style="font-size: 0.9rem;">Sweet local honey mixed with fiery habanero.</p>
           </div>
@@ -504,13 +556,16 @@
           <img src="assets/images/Nashville Fire.png" class="sauce-img-placeholder" alt="Nashville Fire">
           <div class="sauce-content">
             <h3>Nashville Fire</h3>
-            <div class="heat-indicator" style="align-items: center;">
-              <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; margin-right: 0.5rem; color: var(--text-secondary);">Spice Level:</span>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot active"></div>
-              <div class="heat-dot active"></div>
+            <div class="heat-indicator">
+              <span class="heat-label-text">Heat</span>
+              <div class="heat-bar-wrap">
+                <div class="heat-seg s1 lit"></div>
+                <div class="heat-seg s2 lit"></div>
+                <div class="heat-seg s3 lit"></div>
+                <div class="heat-seg s4 lit"></div>
+                <div class="heat-seg s5 lit"></div>
+              </div>
+              <span class="heat-level-tag tag-xhot">🔥 Wild</span>
             </div>
             <p class="text-secondary" style="font-size: 0.9rem;">Intense cayenne spice. Not for the faint of heart.</p>
           </div>
@@ -601,7 +656,7 @@
         <p>Immersive sound, massive screens, and the best game-day atmosphere in the city.</p>
       </div>
       
-      <div class="scroll-container">
+      <div class="bento-grid">
         <div class="exp-card">
           <img src="assets/images/The Main Arena.png" alt="The Main Arena">
           <div class="exp-overlay">
@@ -613,14 +668,14 @@
           <img src="assets/images/Group Booths.png" alt="Group Booths">
           <div class="exp-overlay">
             <h3>Group Booths</h3>
-            <p>Private screens and massive tables for the crew.</p>
+            <p>Private screens for the crew.</p>
           </div>
         </div>
         <div class="exp-card">
           <img src="assets/images/The Long Bar.png" alt="The Long Bar">
           <div class="exp-overlay">
             <h3>The Long Bar</h3>
-            <p>24 taps and the best view in the house.</p>
+            <p>24 taps, best view in house.</p>
           </div>
         </div>
         <div class="exp-card">
