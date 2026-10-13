@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="loc-info">
           <h3>${loc.name}</h3>
           <p class="text-secondary" style="margin-bottom: 0.5rem; font-size: 0.9rem;">📍 ${loc.address}</p>
-          <p style="color: var(--accent-primary); font-size: 0.9rem; font-weight: bold; margin-bottom: 1.5rem;">🕒 ${loc.hours}</p>
+          <p style="color: var(--accent-primary); font-size: 0.9rem; font-weight: 400; margin-bottom: 1.5rem;">🕒 ${loc.hours}</p>
           
           <div class="loc-stats">
             <div class="loc-stat-item">
